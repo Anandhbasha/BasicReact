@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+// import Button from "./Button"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { createContext, useEffect, useState } from "react";
+import Card from "./Card";
+import './App.css'
+
+export const PassingContent = createContext()
+
+const App = ()=>{
+    const [count,setCount] = useState(0)
+    
+    // useEffect(()=>{
+    //     console.log("Welcome");
+        
+        
+    // },[count])
+    const [dark,setDark] = useState('dark')
+    const colorChange =()=>{
+        setDark((curr)=>curr=="dark"?"light":"dark")
+        console.log(dark);
+    }
+
+    return (
+        <PassingContent.Provider value={{setCount,count}}>
+            <Card />
+        </PassingContent.Provider>
+    )
+    
+    // (
+        // <div className="App">
+        //     {/* <Button value= "Click" />
+        //     <Button  value= "Update"/>
+        //     <Button value= "Edit"/>
+        //     <Button value= "Login"/>
+        //     <Button value= "Delete"/>
+        //     <Button value= "Sumbit"/> */}
+        //     {/* <button onClick={countChange}>Add{count}</button> */}
+        //     <div className="box" style={{backgroundColor:dark==="dark"?"black":"red",width:"100px",height:"200px"}}></div>
+        //     <button onClick={colorChange}>{dark}</button>
+        // </div>
+    // )
 }
-
-export default App;
+export default App
